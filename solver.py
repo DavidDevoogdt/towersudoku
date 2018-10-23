@@ -19,10 +19,10 @@ def getcolumn(n):
 def getrow(n):
     return field[n,1:-1]
 def gettowernumber_column(n):
-    s = field[:,n]
+    s = field[:,n+1]
     return (s[0],s[-1])
 def gettowernumber_row(n):
-    s = field[n,:]
+    s = field[n+1,:]
     return (s[0],s[-1])
 
 ## k is the number of towers viewed from below, l from high
@@ -53,7 +53,7 @@ def generate_column(n):
     #print(goal)
     for perm in permutations(a):
         if(towernumbers_col(perm,upper,lower) == goal):
-            possible_columns[n-1].append(list(perm))
+            possible_columns[n].append(list(perm))
     #print(possible_columns[n])
     return
 
@@ -68,7 +68,7 @@ def generate_row(n):
 
     for perm in permutations(a):
         if(towernumbers_col(perm,upper,lower) == goal):
-            possible_rows[n-1].append(list(perm))
+            possible_rows[n].append(list(perm))
     #print(possible_rows[n])
     return
 
@@ -100,10 +100,10 @@ print(field)
 
 
 for i in range(dim):
-    generate_column(i+1);
+    generate_column(i);
 
 for i in range(dim):
-    generate_row(i+1);
+    generate_row(i);
 
 #it is not always possible to solve the tower sudoku from high to low -> several iterations are needed
 iteration = 0
